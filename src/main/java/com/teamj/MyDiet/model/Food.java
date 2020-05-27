@@ -2,14 +2,22 @@ package com.teamj.MyDiet.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.UUID;
+
 public class Food {
+    private final UUID id;
     private final int kcal;
     private final int protein;
     private final int carbohydrates;
     private final int lipids;
     private final String name;
 
-    public Food(@JsonProperty("kcal") int kcal, @JsonProperty("protein")int protein, @JsonProperty("carbohydrates")int carbohydrates, @JsonProperty("lipids") int lipids, @JsonProperty("name") String name) {
+    public UUID getId() {
+        return id;
+    }
+
+    public Food(UUID id, @JsonProperty("kcal") int kcal, @JsonProperty("protein") int protein, @JsonProperty("carbohydrates") int carbohydrates, @JsonProperty("lipids") int lipids, @JsonProperty("name") String name) {
+        this.id = id;
         this.kcal = kcal;
         this.protein = protein;
         this.carbohydrates = carbohydrates;

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class FoodService {
@@ -17,11 +19,23 @@ public class FoodService {
         this.foodDao = foodDao;
     }
 
-    public  void addFood(Food food){
-        foodDao.insertFood(food); ;
+    public  int addFood(Food food){
+        return foodDao.insertFood(food);
     }
 
     public List<Food> getAllFood(){
         return foodDao.selectAllFood();
+    }
+
+    public Optional<Food> getFoodById(UUID id){
+        return  foodDao.selectFoodById(id);
+    }
+
+    public int deleteFood(UUID id){
+        return foodDao.deleteFoodById(id);
+    }
+
+    public int updateFood(UUID id, Food food){
+        return foodDao.updateFoodByName(id,food);
     }
 }
