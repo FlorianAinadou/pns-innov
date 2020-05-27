@@ -1,4 +1,4 @@
-package com.teamj.MyDiet.api;
+package com.teamj.MyDiet.controller;
 
 import com.teamj.MyDiet.model.Food;
 import com.teamj.MyDiet.services.FoodService;
