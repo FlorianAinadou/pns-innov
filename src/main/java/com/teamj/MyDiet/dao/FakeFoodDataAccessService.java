@@ -10,7 +10,16 @@ import java.util.List;
 public class FakeFoodDataAccessService implements FoodDao {
     private static List<Food> DB = new ArrayList<>();
     @Override
-    public void insertFood(Food food) {
+    public int insertFood(Food food) {
+
         DB.add(food);
+        return 1;
     }
+
+    @Override
+    public List<Food> selectAllFood() {
+        return DB;
+    }
+
+
 }

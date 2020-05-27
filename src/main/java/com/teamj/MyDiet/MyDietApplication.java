@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MyDietApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MyDietApplication.class, args);
 	}
 
