@@ -13,7 +13,7 @@ public class FakeFoodDataAccessService implements FoodDao {
     private static List<Food> DB = new ArrayList<>();
 
     @Override
-    public int insertFood(UUID id, Food food) {
+    public int insertFood(int id, Food food) {
         DB.add(new Food(id, food.getKcal(), food.getProtein(), food.getCarbohydrates(), food.getLipids(), food.getName()));
         return 1;
     }
@@ -24,14 +24,14 @@ public class FakeFoodDataAccessService implements FoodDao {
     }
 
     @Override
-    public Optional<Food> selectFoodById(UUID id) {
+    public Optional<Food> selectFoodById(int id) {
         return DB.stream()
-                .filter(food -> food.getId().equals(id))
+                .filter(food -> food.getId() == id)
                 .findFirst();
     }
 
     @Override
-    public int deleteFoodById(UUID id) {
+    public int deleteFoodById(int id) {
         Optional<Food> foodMaybe= selectFoodById(id);
         if (foodMaybe.isPresent()){
             DB.remove(foodMaybe.get());
@@ -41,7 +41,7 @@ public class FakeFoodDataAccessService implements FoodDao {
     }
 
     @Override
-    public int updateFoodByName(UUID id, Food food) {
+    public int updateFoodByName(int id, Food food) {
 
         return selectFoodById(id)
                 .map(food1 -> {
