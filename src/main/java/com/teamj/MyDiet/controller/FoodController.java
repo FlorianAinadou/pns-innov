@@ -29,18 +29,18 @@ public class FoodController {
     }
 
     @GetMapping(path = "{id}")
-    public Food getFoodById(@PathVariable("id") int id){
+    public Food getFoodById(@PathVariable("id") UUID id){
         return foodService.getFoodById(id)
                 .orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteFoodById(@PathVariable("id") int id){
+    public void deleteFoodById(@PathVariable("id") UUID id){
         foodService.deleteFood(id);
     }
 
     @PutMapping(path = "{id}")
-    public void updateFoodById(@PathVariable("id") int id, @RequestBody Food foodToUpdate){
+    public void updateFoodById(@PathVariable("id") UUID id, @RequestBody Food foodToUpdate){
         foodService.updateFood(id, foodToUpdate);
     }
 }

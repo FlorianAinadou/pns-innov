@@ -27,15 +27,15 @@ public class FoodService {
         return foodDao.selectAllFood();
     }
 
-    public Optional<Food> getFoodById(int id){
+    public Optional<Food> getFoodById(UUID id){
         return  foodDao.selectFoodById(id);
     }
 
-    public int deleteFood(int id){
+    public int deleteFood(UUID id){
         return foodDao.deleteFoodById(id);
     }
 
-    public int updateFood(int id, Food food){
+    public int updateFood(UUID id, Food food){
         return foodDao.updateFoodByName(id,food);
     }
 }

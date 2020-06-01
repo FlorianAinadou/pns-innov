@@ -4,22 +4,21 @@ import com.teamj.MyDiet.model.Food;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 
 public interface FoodDao {
-    int insertFood(int id,Food food);
+    int insertFood(UUID id,Food food);
 
     default int insertFood(Food food){
-        //UUID id = UUID.randomUUID();
-        return  insertFood(food.getId(), food);
+        UUID id = UUID.randomUUID();
+        return  insertFood(id, food);
     }
 
     List<Food> selectAllFood();
 
-    Optional<Food> selectFoodById(int id);
+    Optional<Food> selectFoodById(UUID id);
 
-    int deleteFoodById(int id);
+    int deleteFoodById(UUID id);
 
-    int updateFoodByName(int id, Food food);
+    int updateFoodByName(UUID id, Food food);
 }
