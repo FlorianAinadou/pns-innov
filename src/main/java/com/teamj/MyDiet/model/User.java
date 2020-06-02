@@ -3,13 +3,27 @@ package com.teamj.MyDiet.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class User {
-    private int UserID;
-    private String name;
-    private String email;
-    private String password;
+public abstract class User {
+     UUID UserID;
+     String name ;
+     String email ;
+     String password ;
+     Boolean isCoach ;
+     int age;
 
-    public int getUserID() {
+    public Boolean getCoach() {
+        return isCoach;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public UUID getUserID() {
         return UserID;
     }
 
@@ -25,13 +39,27 @@ public class User {
         return password;
     }
 
-    public User() {
+    public boolean isCoach() {
+        return isCoach;
     }
 
-    public User(int userID, String name, String email, String password) {
+    public void setUserID(UUID userID) {
         UserID = userID;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setCoach(Boolean coach) {
+        isCoach = coach;
     }
 }
