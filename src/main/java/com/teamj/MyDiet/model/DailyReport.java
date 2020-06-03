@@ -1,24 +1,29 @@
 package com.teamj.MyDiet.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 public class DailyReport {
-    private int UserID;
+    private UUID UserID;
     private Date reportDate;
     private int weight;
-    private int calorie;
-    private int proteine;
-    private int glucide;
-    private int lipide;
+    private int calories;
+    private int proteins;
+    private int carbohydrates;
+    private int lipids;
+    private List<Food> foods;
 
-    public DailyReport(int userID, Date reportDate, int weight, int calorie, int proteine, int glucide, int lipide) {
+    public DailyReport(UUID userID, Date reportDate, int weight, int calories, int proteins, int carbohydrates, int lipids) {
         UserID = userID;
         this.reportDate = reportDate;
         this.weight = weight;
-        this.calorie = calorie;
-        this.proteine = proteine;
-        this.glucide = glucide;
-        this.lipide = lipide;
+        this.calories = calories;
+        this.proteins = proteins;
+        this.carbohydrates = carbohydrates;
+        this.lipids = lipids;
+        foods=new ArrayList<>();
     }
 
     public DailyReport() {
@@ -32,44 +37,44 @@ public class DailyReport {
         this.weight = weight;
     }
 
-    public int getCalorie() {
-        return calorie;
+    public int getCalories() {
+        return calories;
     }
 
-    public void setCalorie(int calorie) {
-        this.calorie = calorie;
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
-    public int getProteine() {
-        return proteine;
+    public int getProteins() {
+        return proteins;
     }
 
-    public void setProteine(int proteine) {
-        this.proteine = proteine;
+    public void setProteins(int proteins) {
+        this.proteins = proteins;
     }
 
-    public int getGlucide() {
-        return glucide;
+    public int getCarbohydrates() {
+        return carbohydrates;
     }
 
-    public void setGlucide(int glucide) {
-        this.glucide = glucide;
+    public void setCarbohydrates(int carbohydrates) {
+        this.carbohydrates = carbohydrates;
     }
 
-    public int getLipide() {
-        return lipide;
+    public int getLipids() {
+        return lipids;
     }
 
-    public void setLipide(int lipide) {
-        this.lipide = lipide;
+    public void setLipids(int lipids) {
+        this.lipids = lipids;
     }
 
 
-    public int getUserID() {
+    public UUID getUserID() {
         return UserID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(UUID userID) {
         UserID = userID;
     }
 
