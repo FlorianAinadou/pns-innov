@@ -11,3 +11,5 @@ INSERT INTO user VALUES(0,
 
 INSERT INTO user VALUES(1, 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/69482110_2450338508361582_8741807199682035712_o.jpg?_nc_cat=104&_nc_sid=09cbfe&_nc_ohc=qIebk6N6kS8AX-XcLRV&_nc_ht=scontent-cdg2-1.xx&oh=0db7011ea8c36368edb40d67a9a05488&oe=5EFCFD2E',
 'virgile@mydiet.fr',null ,true, 'Virgile', 'patatra');
+
+INSERT INTO food VALUES(1, 10, 10, 10,'viande', 10);
