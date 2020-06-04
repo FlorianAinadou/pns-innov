@@ -1,29 +1,53 @@
 package com.teamj.MyDiet.model;
 
-import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
+@Entity
 public class DailyReport {
-    private UUID UserID;
-    private Date reportDate;
-    private int weight;
-    private int calories;
-    private int proteins;
-    private int carbohydrates;
-    private int lipids;
-    private List<Food> foods;
 
-    public DailyReport(UUID userID, Date reportDate, int weight, int calories, int proteins, int carbohydrates, int lipids) {
-        UserID = userID;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private int weight;
+    private int calorie;
+    private int proteine;
+    private int glucide;
+    private int lipide;
+    private int userID;
+    private Date reportDate;
+
+    public DailyReport(int id, int userID, Date reportDate, int weight, int calorie, int proteine, int glucide, int lipide) {
+        this.id = id;
+        this.userID = userID;
         this.reportDate = reportDate;
         this.weight = weight;
-        this.calories = calories;
-        this.proteins = proteins;
-        this.carbohydrates = carbohydrates;
-        this.lipids = lipids;
-        foods=new ArrayList<>();
+        this.calorie = calorie;
+        this.proteine = proteine;
+        this.glucide = glucide;
+        this.lipide = lipide;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public DailyReport(int userID, Date reportDate, int weight, int calorie, int proteine, int glucide, int lipide) {
+        this.userID = userID;
+        this.reportDate = reportDate;
+        this.weight = weight;
+        this.calorie = calorie;
+        this.proteine = proteine;
+        this.glucide = glucide;
+        this.lipide = lipide;
     }
 
     public DailyReport() {
@@ -37,45 +61,45 @@ public class DailyReport {
         this.weight = weight;
     }
 
-    public int getCalories() {
-        return calories;
+    public int getCalorie() {
+        return calorie;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
+    public void setCalorie(int calorie) {
+        this.calorie = calorie;
     }
 
-    public int getProteins() {
-        return proteins;
+    public int getProteine() {
+        return proteine;
     }
 
-    public void setProteins(int proteins) {
-        this.proteins = proteins;
+    public void setProteine(int proteine) {
+        this.proteine = proteine;
     }
 
-    public int getCarbohydrates() {
-        return carbohydrates;
+    public int getGlucide() {
+        return glucide;
     }
 
-    public void setCarbohydrates(int carbohydrates) {
-        this.carbohydrates = carbohydrates;
+    public void setGlucide(int glucide) {
+        this.glucide = glucide;
     }
 
-    public int getLipids() {
-        return lipids;
+    public int getLipide() {
+        return lipide;
     }
 
-    public void setLipids(int lipids) {
-        this.lipids = lipids;
+    public void setLipide(int lipide) {
+        this.lipide = lipide;
     }
 
 
-    public UUID getUserID() {
-        return UserID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserID(UUID userID) {
-        UserID = userID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public Date getReportDate() {

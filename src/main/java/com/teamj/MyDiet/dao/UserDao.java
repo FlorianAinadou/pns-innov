@@ -1,15 +1,19 @@
 package com.teamj.MyDiet.dao;
 
 import com.teamj.MyDiet.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface UserDao {
+@Repository
+public interface UserDao extends JpaRepository<User,Integer> {
 
-    public List<User> getUsers();
 
-    public User findById(UUID i);
+    public List<User> findAllByIdCoachEquals(int id);
 
-    public User save(User user);
+    public List<User> findByisCoachIsTrue();
+
+    public User findById(int i);
+
 }

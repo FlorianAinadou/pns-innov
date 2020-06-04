@@ -3,26 +3,41 @@ package com.teamj.MyDiet.model;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Client extends User {
-
-
+public class Client {
+    private final UUID UserID;
+    private final String name;
+    private final String email;
+    private final String password;
     private int height;
     private int weight;
-    private int age;
+    private int Age;
     private ArrayList<DailyReport> reports;
 
     public Client(UUID userID, String name, String email, String password, int height, int weight, int age) {
-        this.UserID = userID;
+        UserID = userID;
         this.name = name;
         this.email = email;
         this.password = password;
         this.height = height;
         this.weight = weight;
-        this.age = age;
-        this.isCoach=false;
+        Age = age;
     }
 
+    public UUID getUserID() {
+        return UserID;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public int getHeight() {
         return height;
@@ -41,11 +56,11 @@ public class Client extends User {
     }
 
     public int getAge() {
-        return age;
+        return Age;
     }
 
     public void setAge(int age) {
-        this.age = age;
+        Age = age;
     }
 
     void addDailyReport(DailyReport dailyReport){
@@ -55,6 +70,4 @@ public class Client extends User {
     DailyReport getReport(int i){
         return reports.get(i);
     }
-
-
 }

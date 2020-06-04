@@ -1,13 +1,16 @@
 package com.teamj.MyDiet.dao;
 
 import com.teamj.MyDiet.model.DailyReport;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-public interface DailyDao {
+@Repository
+public interface DailyDao extends JpaRepository<DailyReport,Integer> {
 
-    public List<DailyReport> getDailyReports(UUID id);
+    List<DailyReport> findByUserID(int UserId);
 
-    public void save(DailyReport dailyReport);
-
+    List<DailyReport> findByReportDateGreaterThanEqual(Date date);
 }

@@ -2,7 +2,6 @@ package com.teamj.MyDiet.daoImplementations;
 
 import com.teamj.MyDiet.dao.FoodDao;
 import com.teamj.MyDiet.model.Food;
-import com.teamj.MyDiet.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
