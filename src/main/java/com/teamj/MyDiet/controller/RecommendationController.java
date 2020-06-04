@@ -17,12 +17,12 @@ public class RecommendationController {
     RecoDao recoDao;
 
     @GetMapping(value = "api/v1/recommendation/{id}")
-    public List<Recommendation> getCoachById(@PathVariable int id) {
+    public List<Recommendation> getAllRecommendationOfUser(@PathVariable int id) {
         return recoDao.findAllByIdUserEquals(id);
     }
 
     @PostMapping(value = "api/v1/recommendation")
-    public ResponseEntity<Void> save(@PathVariable int idUser, @RequestBody Recommendation recommendation){
+    public ResponseEntity<Void> addRecommendation(@PathVariable int idUser, @RequestBody Recommendation recommendation){
 
         Recommendation recommendation1 = recoDao.save(recommendation);
 

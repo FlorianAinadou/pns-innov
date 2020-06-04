@@ -35,13 +35,13 @@ public class UserController {
     }
 
     @GetMapping(value = "api/v1/coach/{id}")
-    public List<User> getCoachById(@PathVariable int id) {
+    public List<User> getFollowingPeople(@PathVariable int id) {
         return userDao.findAllByIdCoachEquals(id);
     }
 
 
     @PutMapping(value = "api/v1/selectCoach/{idUser}/{idCoach}")
-    public ResponseEntity<Void> save(@PathVariable int idUser, @PathVariable int idCoach){
+    public ResponseEntity<Void> choseCoach(@PathVariable int idUser, @PathVariable int idCoach){
 
         User coach = userDao.findById(idCoach);
         User user = userDao.findById(idUser);

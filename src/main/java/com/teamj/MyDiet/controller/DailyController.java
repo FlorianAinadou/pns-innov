@@ -30,7 +30,7 @@ public class DailyController {
     }
 
     @PostMapping(value = "api/v1/daily")
-    public ResponseEntity<Void> save(@RequestBody DailyReport dailyReport){
+    public ResponseEntity<Void> addNewDaily(@RequestBody DailyReport dailyReport){
         DailyReport dailyReport1 = dailyDao.save(dailyReport);
 
         if(dailyReport == null){
