@@ -12,7 +12,7 @@ before_script:
 - docker pull yfalco/pns-innov-back || true
 script:
 - "./mvnw clean install -B"
-- docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back.
+- docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back .
 - docker images
 before_deploy:
 - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
