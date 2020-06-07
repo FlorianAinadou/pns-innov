@@ -7,16 +7,17 @@ services:
 env:
   global:
   - REGISTRY_USER=travisinnov
-  - secure: a2GMwdMJRABYspZZX1jU+ggQun6mSJ2GFznFz8awEqW/aSVgD0AZnZb7gMqDuCBP81P/LWu16zIcJCCHil5iKpgEYu3MZ7lR0rqFqxFcj8nWu+buG8e0ehNBPWtUrRBLdBj9yfM1E08OicVdHiJNLCbPOkdRI0kdgKG4rcwZD8uSHblXh1RwypOBhijszPvsjfpLtqZhReRqFszndlZbusmpKq29tz6S52rr5hKibypT9g+92CBdkvQolyfZatiD8byBlcUs7TQb7FWImve+O4IXRXv4Xh0o8B/kigfiBCHHLlyzXW2nNOMdl0RrtVF2SIqkS5O58Oafj6HyAlw6NGSL/LMev9QvEdQ4qJ+8RFy15tH4kehfv/xbVzFr1o4z9be/SK+pWLs+Ap/5p77fwXDhdcasaqa4pOJoXbtlTMAEW1wRR+wcpBn3JWewEG3TSFXjKJSJbvf+5xTDVHsOY5gikR5xNZ5cyGOCnRexHXAeUKMHOIL0tTgqtbVqiL6f4mpxvaxY+IbAqRsMjeNoFO/D0puIYqaUALTQBrlItnnOHkME8vkGO4g/9Axe7z0zfIHmmQjOBpFWv6WIbpGxssEwcxCcu070sxTuQLOGOVFFGvA6v0OrRDOSj81LFzJVn0rghfOSLh7AkItYQxk/lhqAiPqpSM5DY+AnKgadZLo=
+  - secure: hUGgv0Gp7QSzEI+9IluCRD4zOwUIqxG2ZPhM22McVt/p1mnlBwbTYANacL1jgtpcGVpO0+syFV3o9y6u6qwtgiWmTQ31osj3gNGPb+5VweuAzgfWfbl70T1WsvmbA32H8ifapd/rXRtznk6KF7C51jSeKw4Fxbs9MwUXcX/gTK5BtEE1/Y9s21/t3gb0aQYXwssNDrkOncfXVwD99bmAyBNVk2naddCoLnxWsQj09EEi5lHPmUehZYLowWL/QzMOSuIVwncgl5MEp2rJ0QV6z9zhDRVOFlVdOksw99FeXVMVIdecpgTozHvG8QDBBPpJBs6EF1gzvtvKThjy79Flm4O0cWT02apNFbLFiMNEus+YVw0HXwfKJvCvItAKmgpzUJUxKxN4iagft7Df7xG8Z0b9AO+zgE5kXQO5NQ/e9ZcWdrQRfg6AYdF5iCBJxWbIDZSqPcA9HAhCkaxW+NvP575oc+kgYlLfzv6+PEQ0IV5zq8loR2Fy1fyXAIZdg+9Our8C+jv/4nHVRZWgr2Jx5lhZyXu9a/LbItCqP3PEa5ypEcc0uXqghCNi8Y90pNaaOZ042bL26X6IZ7MULwAreSRtOFm+WAL1bJsEoIf88evv8sJYutATeB6jNU4xTJnLzi5K1/x+cZPHaadjP3RkY3tlsUgfejQFP7U2vYENeZk=
 before_script:
 - docker pull yfalco/pns-innov-back || true
 script:
 - "./mvnw clean install -B"
-- docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back .
+- docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back
+  .
 - docker images
 before_deploy:
 - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
-deploy: 
+deploy:
   provider: script
   script: docker push yfalco/pns-innov-back
 before_install:
