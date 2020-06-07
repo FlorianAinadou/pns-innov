@@ -2,9 +2,23 @@ language: java
 sudo: true
 dist: trusty
 jdk: oraclejdk9
-
-
+services:
+- docker
+env:
+  global:
+  - REGISTRY_USER=travisinnov
+  - secure: a2GMwdMJRABYspZZX1jU+ggQun6mSJ2GFznFz8awEqW/aSVgD0AZnZb7gMqDuCBP81P/LWu16zIcJCCHil5iKpgEYu3MZ7lR0rqFqxFcj8nWu+buG8e0ehNBPWtUrRBLdBj9yfM1E08OicVdHiJNLCbPOkdRI0kdgKG4rcwZD8uSHblXh1RwypOBhijszPvsjfpLtqZhReRqFszndlZbusmpKq29tz6S52rr5hKibypT9g+92CBdkvQolyfZatiD8byBlcUs7TQb7FWImve+O4IXRXv4Xh0o8B/kigfiBCHHLlyzXW2nNOMdl0RrtVF2SIqkS5O58Oafj6HyAlw6NGSL/LMev9QvEdQ4qJ+8RFy15tH4kehfv/xbVzFr1o4z9be/SK+pWLs+Ap/5p77fwXDhdcasaqa4pOJoXbtlTMAEW1wRR+wcpBn3JWewEG3TSFXjKJSJbvf+5xTDVHsOY5gikR5xNZ5cyGOCnRexHXAeUKMHOIL0tTgqtbVqiL6f4mpxvaxY+IbAqRsMjeNoFO/D0puIYqaUALTQBrlItnnOHkME8vkGO4g/9Axe7z0zfIHmmQjOBpFWv6WIbpGxssEwcxCcu070sxTuQLOGOVFFGvA6v0OrRDOSj81LFzJVn0rghfOSLh7AkItYQxk/lhqAiPqpSM5DY+AnKgadZLo=
+before_script:
+- docker pull yfalco/pns-innov-back || true
 script:
-- ./mvnw clean install -B
+- "./mvnw clean install -B"
+after_script:
+- docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back .
+- docker images
+before_deploy:
+- docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  provider: script
+  script: docker push yfalco/pns-innov-back
 before_install:
 - chmod +x mvnw
