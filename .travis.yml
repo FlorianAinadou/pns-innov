@@ -16,8 +16,8 @@ after_script:
 - docker build --pull --cache-from yfalco/pns-innov-back --tag yfalco/pns-innov-back .
 - docker images
 before_deploy:
-- docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
-deploy:
+- docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+deploy: 
   provider: script
   script: docker push yfalco/pns-innov-back
 before_install:
