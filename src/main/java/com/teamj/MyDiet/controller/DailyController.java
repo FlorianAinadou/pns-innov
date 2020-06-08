@@ -23,10 +23,17 @@ public class DailyController {
     }
 
     @GetMapping(value = "api/v1/daily/week/{id}")
-    public List<DailyReport> getDailysWeeksFromUser() {
+    public List<DailyReport> getDailysWeeksFromUser(@PathVariable int id) {
         final Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -6);
-        return dailyDao.findByReportDateGreaterThanEqual(cal.getTime());
+        return dailyDao.findByUserIDAndReportDateGreaterThanEqual(id, cal.getTime());
+    }
+
+    @GetMapping(value = "api/v1/daily/month/{id}")
+    public List<DailyReport> getDailysMonthsFromUser(@PathVariable int id) {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -30);
+        return dailyDao.findByUserIDAndReportDateGreaterThanEqual(id, cal.getTime());
     }
 
     @PostMapping(value = "api/v1/daily")

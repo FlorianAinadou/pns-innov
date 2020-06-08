@@ -14,5 +14,5 @@ public interface DailyDao extends JpaRepository<DailyReport,Integer> {
 
     List<DailyReport> findByUserID(int UserId);
 
-    List<DailyReport> findByReportDateGreaterThanEqual(Date date);
+    List<DailyReport> findByUserIDAndReportDateGreaterThanEqual(int id, Date date);
 }
