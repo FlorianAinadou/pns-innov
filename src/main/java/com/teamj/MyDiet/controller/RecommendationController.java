@@ -17,11 +17,21 @@ public class RecommendationController {
     @Autowired
     RecoDao recoDao;
 
+    /**
+     *
+     * @param id of the user
+     * @return the list of all recommendations
+     */
     @GetMapping(value = "api/v1/recommendation/{id}")
     public List<Recommendation> getAllRecommendationOfUser(@PathVariable int id) {
         return recoDao.findAllByIdUserEquals(id);
     }
 
+    /**
+     *
+     * @param recommendation to save
+     * @return the response of the server
+     */
     @PostMapping(value = "api/v1/recommendation")
     public ResponseEntity<Void> addRecommendation(@RequestBody Recommendation recommendation){
 

@@ -19,6 +19,11 @@ public class FoodController {
     private FoodDao foodDao;
 
 
+    /**
+     *
+     * @param food to save in the database
+     * @return the response of the server
+     */
     @PostMapping
     public ResponseEntity<Void> addFood(@RequestBody Food food){
         Food foodToSave= foodDao.save(food);
@@ -36,16 +41,29 @@ public class FoodController {
         return ResponseEntity.created(location).build();
     }
 
+    /**
+     *
+     * @return all the food of the database
+     */
     @GetMapping(path = "/all")
     public List<Food> getAllFood(){
         return foodDao.findAll();
     }
 
+    /**
+     *
+     * @param id of the user
+     * @return the list of the food by the user
+     */
     @GetMapping(path = "{id}")
     public Optional<Food> getFoodById(@PathVariable("id") int id){
         return foodDao.findById(id);
     }
 
+    /**
+     *
+     * @param food to delete
+     */
     @DeleteMapping(path = "{id}")
     public void deleteFoodById(@PathVariable("id") Food food){
         foodDao.delete(food);

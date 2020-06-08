@@ -19,27 +19,50 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    /**
+     *
+     * @return all the users of the database
+     */
     @GetMapping(value = "api/v1/users")
     public List<User> getUsers() {
         return userDao.findAll();
     }
 
+    /**
+     *
+     * @param id of the user to get
+     * @return the user of the given id
+     */
     @GetMapping(value = "api/v1/user/{id}")
     public User getUserById(@PathVariable int id) {
         return userDao.findById(id);
     }
 
+    /**
+     *
+     * @return the list of all coachs
+     */
     @GetMapping(value = "api/v1/coachs")
     public List<User> getCoachs() {
         return userDao.findByisCoachIsTrue();
     }
 
+    /**
+     * @param id of the coach
+     * @return all the users followed by the coach
+     */
     @GetMapping(value = "api/v1/coach/{id}")
     public List<User> getFollowingPeople(@PathVariable int id) {
         return userDao.findAllByIdCoachEquals(id);
     }
 
 
+    /**
+     * @description Link the coach to the user
+     * @param idUser the user ID
+     * @param idCoach the coach ID
+     * @return the response of the server
+     */
     @PutMapping(value = "api/v1/selectCoach/{idUser}/{idCoach}")
     public ResponseEntity<Void> choseCoach(@PathVariable int idUser, @PathVariable int idCoach){
 

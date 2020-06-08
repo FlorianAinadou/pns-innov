@@ -17,11 +17,19 @@ public class DailyController {
     @Autowired
     DailyDao dailyDao;
 
+    /**
+     * @param id of user
+     * @return the dailyreport list of the user
+     */
     @GetMapping(value = "api/v1/daily/{id}")
     public List<DailyReport> getDailysFromUser(@PathVariable int id) {
         return dailyDao.findByUserID(id);
     }
 
+    /**
+     * @param id of the user
+     * @return the dailyreport list of the last 7 days of the user
+     */
     @GetMapping(value = "api/v1/daily/week/{id}")
     public List<DailyReport> getDailysWeeksFromUser(@PathVariable int id) {
         final Calendar cal = Calendar.getInstance();
@@ -29,6 +37,10 @@ public class DailyController {
         return dailyDao.findByUserIDAndReportDateGreaterThanEqual(id, cal.getTime());
     }
 
+    /**
+     * @param id of the user
+     * @return the dailyreport list of the last 30 days of the user
+     */
     @GetMapping(value = "api/v1/daily/month/{id}")
     public List<DailyReport> getDailysMonthsFromUser(@PathVariable int id) {
         final Calendar cal = Calendar.getInstance();
@@ -36,6 +48,10 @@ public class DailyController {
         return dailyDao.findByUserIDAndReportDateGreaterThanEqual(id, cal.getTime());
     }
 
+    /**
+     * @param dailyReport to save in the database
+     * @return the response of the server
+     */
     @PostMapping(value = "api/v1/daily")
     public ResponseEntity<Void> addNewDaily(@RequestBody DailyReport dailyReport){
         DailyReport dailyReport1 = dailyDao.save(dailyReport);
