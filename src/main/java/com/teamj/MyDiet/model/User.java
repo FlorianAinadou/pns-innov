@@ -76,7 +76,7 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(int userID, int idCoach, boolean isCoach, String name, String email, String password) {
+    public User(int userID, Integer idCoach, boolean isCoach, String name, String email, String password) {
         id = userID;
         this.idCoach = idCoach;
         this.isCoach = isCoach;

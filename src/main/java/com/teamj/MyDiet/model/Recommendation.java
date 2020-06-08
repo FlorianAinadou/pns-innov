@@ -12,6 +12,7 @@ public class Recommendation {
     int id;
     int idUser;
     int idCoach;
+    String description;
 
     public String getDescription() {
         return description;
@@ -21,7 +22,6 @@ public class Recommendation {
         this.description = description;
     }
 
-    String description;
 
     public Recommendation() {
     }

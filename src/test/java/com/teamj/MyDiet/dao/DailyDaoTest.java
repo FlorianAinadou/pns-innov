@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,6 +34,12 @@ class DailyDaoTest {
 
     @Test
     void findByReportDateGreaterThanEqual() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -6);
+        List<DailyReport> dailys = dailyDao.findByReportDateGreaterThanEqual(cal.getTime());
+        assertEquals(3, dailys.size());
 
     }
+
+
 }
