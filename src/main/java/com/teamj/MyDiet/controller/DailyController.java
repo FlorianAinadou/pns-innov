@@ -15,7 +15,7 @@ import java.util.List;
 public class DailyController {
 
     @Autowired
-    private DailyDao dailyDao;
+    DailyDao dailyDao;
 
     @GetMapping(value = "api/v1/daily/{id}")
     public List<DailyReport> getDailysFromUser(@PathVariable int id) {

@@ -15,12 +15,9 @@ import java.util.Optional;
 @RequestMapping("api/v1/food")
 @RestController
 public class FoodController {
-    private final FoodDao foodDao;
-
     @Autowired
-    public FoodController(FoodDao foodDao) {
-        this.foodDao = foodDao;
-    }
+    private FoodDao foodDao;
+
 
     @PostMapping
     public ResponseEntity<Void> addFood(@RequestBody Food food){
@@ -39,7 +36,7 @@ public class FoodController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping(path = "all")
+    @GetMapping(path = "/all")
     public List<Food> getAllFood(){
         return foodDao.findAll();
     }
