@@ -13,6 +13,16 @@ public class Recommendation {
     int idUser;
     int idCoach;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    String description;
+
     public Recommendation() {
     }
 
