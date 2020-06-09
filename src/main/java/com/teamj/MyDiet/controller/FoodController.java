@@ -3,9 +3,11 @@ package com.teamj.MyDiet.controller;
 
 import com.teamj.MyDiet.dao.FoodDao;
 import com.teamj.MyDiet.model.Food;
+import com.teamj.MyDiet.model.OpenFoodAPIModel.ResponseFood;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -48,6 +50,38 @@ public class FoodController {
     @GetMapping(path = "/all")
     public List<Food> getAllFood(){
         return foodDao.findAll();
+    }
+
+    /**
+     *
+     * @param id of the user
+     * @return the food by the user from openfoodfact
+     */
+    @GetMapping(path = "/code/{id}")
+    public Food getFoodByBarCode(@PathVariable("id") long id){
+        Food food = new Food();
+        final String uri = "https://world.openfoodfacts.org/api/v0/product/" + id +".json";
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseFood result = restTemplate.getForObject(uri, ResponseFood.class);
+        if(result != null && result.getProduct() != null &&
+                result.getProduct().getNutriments() != null &&
+                result.getProduct().getNutriments().getEnergyKcal100g() != null &&
+                result.getProduct().getNutriments().getProteins100g() != null &&
+                result.getProduct().getNutriments().getCarbohydrates100g() != null &&
+                result.getProduct().getNutriments().getFat100g() != null &&
+                result.getProduct().getProductName() != null){
+            food.setKcal(result.getProduct().getNutriments().getEnergyKcal100g().intValue());
+            food.setCarbohydrates(result.getProduct().getNutriments().getCarbohydrates100g().intValue());
+            food.setLipids(result.getProduct().getNutriments().getFat100g().intValue());
+            food.setProtein(result.getProduct().getNutriments().getProteins100g().intValue());
+            food.setName(result.getProduct().getProductName());
+        }else{
+            food.setName("error");
+        }
+
+        return food;
+
     }
 
     /**
