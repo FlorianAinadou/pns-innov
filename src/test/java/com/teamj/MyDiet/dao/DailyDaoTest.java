@@ -24,7 +24,7 @@ class DailyDaoTest {
 
     @Test
     void findByUserID() {
-        User user= new User(1, 0,false,"Florian","email","ratp");
+        User user= new User(1, 0,false,"Florian","email","ratp","No description");
         DailyReport dailyReport=new DailyReport(1,1, Date.from(Instant.now()),20,150,10,15,5);
         dailyDao.save(dailyReport);
         List<DailyReport> usersDaily=dailyDao.findByUserID(1);

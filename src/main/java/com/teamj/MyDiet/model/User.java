@@ -17,8 +17,31 @@ public class User {
     private String password;
     private String avatar;
 
+
     public User() {
     }
+
+    public User(int userID, Integer idCoach, boolean isCoach, String name, String email, String password, String description) {
+        id = userID;
+        this.idCoach = idCoach;
+        this.isCoach = isCoach;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.description=description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+
 
     public Integer getIdCoach() {
         return idCoach;
@@ -76,12 +99,5 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(int userID, Integer idCoach, boolean isCoach, String name, String email, String password) {
-        id = userID;
-        this.idCoach = idCoach;
-        this.isCoach = isCoach;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+
 }

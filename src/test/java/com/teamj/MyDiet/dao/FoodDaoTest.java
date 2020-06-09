@@ -1,6 +1,4 @@
-
 package com.teamj.MyDiet.dao;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teamj.MyDiet.model.Food;
 import org.junit.Assert;

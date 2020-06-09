@@ -87,4 +87,39 @@ public class UserController {
         return ResponseEntity.created(location).build();
 
     }
+
+    @PutMapping(value = "api/v1/removeCoach/{idUser}")
+    public void removeCoach(@PathVariable int idUser){
+
+        User user = userDao.findById(idUser);
+
+        user.setIdCoach(null);
+
+        userDao.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .build()
+                .toUri();
+
+    }
+
+    @PutMapping(value = "api/v1/updateDescription/{idUser}/{description}")
+    public void updateDescription(@PathVariable int idUser, @PathVariable String description ){
+
+        User user = userDao.findById(idUser);
+        user.setDescription(description);
+
+        userDao.save(user);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(description)
+                .toUri();
+
+    }
+
+
 }
