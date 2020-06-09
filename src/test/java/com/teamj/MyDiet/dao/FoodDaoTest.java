@@ -1,3 +1,4 @@
+
 package com.teamj.MyDiet.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,41 +21,48 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FoodDaoTest {
-    private MockMvc mockMvc;
-
-    @Autowired
-    private WebApplicationContext context;
 
     @Autowired
     private FoodDao foodDao;
 
-    ObjectMapper om= new ObjectMapper();
 
     @Before
     public void setup(){
-        mockMvc= MockMvcBuilders.webAppContextSetup(context).build();
+        Food food=new Food(1,50,10,20,10,"Viande");
+        foodDao.save(food);
+    }
+
+    @Test
+    public void getFoodById(){
+        Optional<Food> food1=foodDao.findById(1);
+        Food food2= food1.get();
+        assertEquals(1, food2.getId());
     }
 
     @Test
     public void addFoodTest() throws Exception {
-        Food food=new Food(1,50,10,20,10,"Viande");
-        foodDao.save(food);
+
         Optional<Food> food1=foodDao.findById(1);
+        Assert.assertNotNull(food1);
         Food food2= food1.get();
         Assert.assertEquals(food2.getName() ,"Viande");
-        Assert.assertNotNull(food1);
-
 
     }
 
     @Test
     public void getAllFood() throws Exception {
-        Food food=new Food(1,50,10,20,10,"Viande");
-        foodDao.save(food);
         List<Food> foods= foodDao.findAll();
         Assert.assertEquals(foods.size(), 1);
-
-
     }
+
+    @Test
+    public void deleteFoodById() throws Exception{
+        Optional<Food> food1=foodDao.findById(1);
+        Assert.assertNotNull(food1);
+        foodDao.deleteById(1);
+        food1=foodDao.findById(1);
+        Assert.assertFalse(food1.isPresent());
+    }
+
 
 }
