@@ -73,10 +73,11 @@ public class FoodController {
             food.setLipids(result.getProduct().getNutriments().getFat100g().intValue());
             food.setProtein(result.getProduct().getNutriments().getProteins100g().intValue());
             food.setName(result.getProduct().getProductName());
+
             //food.setId((int)(Math.random()*1000000));
 
             if (dailyReport != null) {
-
+                food.setIdDaily(dailyReport.getId());
                 //Set Daily
                 dailyReport.setCalorie(dailyReport.getCalorie() + food.getKcal());
                 dailyReport.setLipide(dailyReport.getLipide() + food.getLipids());
