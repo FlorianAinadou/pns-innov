@@ -21,10 +21,24 @@ public class DailyController {
      * @param id of user
      * @return the dailyreport list of the user
      */
-    @GetMapping(value = "api/v1/daily/{id}")
+    @GetMapping(value = "api/v1/dailys/{id}")
     public List<DailyReport> getDailysFromUser(@PathVariable int id) {
         return dailyDao.findByUserID(id);
     }
+
+
+    /**
+     * @param id of user
+     * @return the today dailyreport of the user
+     */
+    @GetMapping(value = "api/v1/daily/{id}")
+    public DailyReport getDailyFromUser(@PathVariable int id) {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return dailyDao.findByUserIDAndReportDateGreaterThanEqual(id, cal.getTime()).get(0);
+    }
+
+
 
     /**
      * @param id of the user

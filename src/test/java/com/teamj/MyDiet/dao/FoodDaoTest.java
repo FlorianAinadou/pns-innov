@@ -26,7 +26,7 @@ public class FoodDaoTest {
 
     @Before
     public void setup(){
-        Food food=new Food(1,50,10,20,10,"Viande");
+        Food food=new Food(1,1,50,10,20,10,"Viande");
         foodDao.save(food);
     }
 

@@ -36,6 +36,7 @@ public class Food {
     @Id
     @GeneratedValue
     private  int id;
+    private  int idDaily;
     private  int kcal;
     private  int protein;
     private  int carbohydrates;
@@ -47,10 +48,11 @@ public class Food {
     }
 
 
-    public Food(int id, @JsonProperty("kcal") int kcal, @JsonProperty("protein") int protein, @JsonProperty("carbohydrates") int carbohydrates, @JsonProperty("lipids") int lipids, @JsonProperty("name") String name) {
+    public Food(int id, @JsonProperty("idDaily") int idDaily, @JsonProperty("kcal") int kcal, @JsonProperty("protein") int protein, @JsonProperty("carbohydrates") int carbohydrates, @JsonProperty("lipids") int lipids, @JsonProperty("name") String name) {
         this.id = id;
         this.kcal = kcal;
         this.protein = protein;
+        this.idDaily = idDaily;
         this.carbohydrates = carbohydrates;
         this.lipids = lipids;
         this.name = name;
@@ -61,6 +63,13 @@ public class Food {
 
     public int getKcal() {
         return kcal;
+    }
+    public int getIdDaily() {
+        return idDaily;
+    }
+
+    public void setIdDaily(int idDaily) {
+        this.idDaily = idDaily;
     }
 
     public int getProtein() {
