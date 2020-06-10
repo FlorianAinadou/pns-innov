@@ -159,7 +159,7 @@ public class FoodController {
         cal.add(Calendar.DATE, -1);
         DailyReport dailyReport = dailyDao.findByUserIDAndReportDateGreaterThanEqual(idUser, cal.getTime()).get(0);
 
-        if (dailyReport != null) {
+        if (dailyReport != null && food.getIdDaily() == dailyReport.getId()) {
 
             //Set Daily
             dailyReport.setCalorie(dailyReport.getCalorie() - food.getKcal());
