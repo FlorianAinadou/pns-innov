@@ -43,6 +43,40 @@ public class FoodController {
         return ResponseEntity.created(location).build();
     }
 
+    @PostMapping(path = "/code/{id}")
+    public  ResponseEntity<Void> addFoodByBarCode(@PathVariable("id") long id){
+        Food food = new Food();
+        final String uri = "https://world.openfoodfacts.org/api/v0/product/" + id +".json";
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseFood result = restTemplate.getForObject(uri, ResponseFood.class);
+        if(result != null && result.getProduct() != null &&
+                result.getProduct().getNutriments() != null &&
+                result.getProduct().getNutriments().getEnergyKcal100g() != null &&
+                result.getProduct().getNutriments().getProteins100g() != null &&
+                result.getProduct().getNutriments().getCarbohydrates100g() != null &&
+                result.getProduct().getNutriments().getFat100g() != null &&
+                result.getProduct().getProductName() != null){
+            food.setKcal(result.getProduct().getNutriments().getEnergyKcal100g().intValue());
+            food.setCarbohydrates(result.getProduct().getNutriments().getCarbohydrates100g().intValue());
+            food.setLipids(result.getProduct().getNutriments().getFat100g().intValue());
+            food.setProtein(result.getProduct().getNutriments().getProteins100g().intValue());
+            food.setName(result.getProduct().getProductName());
+            //food.setId((int)(Math.random()*1000000));
+            foodDao.save(food);
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/code/{id}")
+                .buildAndExpand(food.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
     /**
      *
      * @return all the food of the database
@@ -102,6 +136,7 @@ public class FoodController {
     public void deleteFoodById(@PathVariable("id") Food food){
         foodDao.delete(food);
     }
+
 
 
 }

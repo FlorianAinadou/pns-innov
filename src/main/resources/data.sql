@@ -13,5 +13,5 @@ INSERT INTO user VALUES(1, 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/694821
 'virgile@mydiet.fr',null ,true, 'Virgile', 'patatra');
 
 
-INSERT INTO food VALUES(1, 10, 10, 10,'viande', 10);
+INSERT INTO food VALUES(90020, 10, 10, 10,'viande', 10);
 INSERT INTO recommendation VALUES(0, 'Fait du sport', 1, 0);
