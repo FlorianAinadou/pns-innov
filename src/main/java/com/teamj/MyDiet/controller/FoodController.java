@@ -30,11 +30,25 @@ public class FoodController {
      * @param food to save in the database
      * @return the response of the server
      */
-    @PostMapping
-    public ResponseEntity<Void> addFood(@RequestBody Food food) {
-        Food foodToSave = foodDao.save(food);
+    @PostMapping(path = "/{idUser}")
+    public ResponseEntity<Void> addFood(@PathVariable int idUser, @RequestBody Food food) {
+        // Find daily;
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        DailyReport dailyReport = dailyDao.findByUserIDAndReportDateGreaterThanEqual(idUser, cal.getTime()).get(0);
 
-        if (foodToSave == null) {
+        if (dailyReport != null) {
+            food.setIdDaily(dailyReport.getId());
+            //Set Daily
+            dailyReport.setCalorie(dailyReport.getCalorie() + food.getKcal());
+            dailyReport.setLipide(dailyReport.getLipide() + food.getLipids());
+            dailyReport.setProteine(dailyReport.getProteine() + food.getProtein());
+            dailyReport.setGlucide(dailyReport.getGlucide() + food.getCarbohydrates());
+
+            //save data
+            dailyDao.save(dailyReport);
+            foodDao.save(food);
+        }else{
             return ResponseEntity.noContent().build();
         }
 
@@ -108,6 +122,14 @@ public class FoodController {
     @GetMapping(path = "/all")
     public List<Food> getAllFood() {
         return foodDao.findAll();
+    }
+
+    /**
+     * @return all the food of the database
+     */
+    @GetMapping(path = "/{idDaily}")
+    public List<Food> getAllFoodFromDaily(@PathVariable int idDaily) {
+        return foodDao.findByIdDailyEquals(idDaily);
     }
 
     /**
