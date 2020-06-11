@@ -1,7 +1,5 @@
 
 
-
-
 INSERT INTO user VALUES(25,
 'https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/54255583_1276949652454861_874443465881026560_n.jpg?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=88gfQTlQJV0AX__vKxd&_nc_ht=scontent-cdg2-1.xx&oh=869df4abffa857bfe315f77dbf1e4d54&oe=5EFE98AE','No description',
 'florian@mydiet.fr', 1,false, 'Florian', 'patatra');

@@ -25,7 +25,7 @@ class RecoDaoTest {
     @Test
     void findAllByIdUserEquals() {
         List<Recommendation> recommendations = recoDao.findAllByIdUserEquals(0);
-        assertEquals(1, recommendations.size());
+        assertEquals(2, recommendations.size());
     }
 
 

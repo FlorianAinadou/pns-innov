@@ -37,7 +37,7 @@ class DailyDaoTest {
         final Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -6);
         List<DailyReport> dailys = dailyDao.findByUserIDAndReportDateGreaterThanEqual(0, cal.getTime());
-        assertEquals(3, dailys.size());
+        assertEquals(2, dailys.size());
 
     }
 
